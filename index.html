@@ -234,8 +234,50 @@
             font-size: 0.65rem; font-weight: 600; z-index: 5;
             pointer-events: none; opacity: 0.8; display: flex; gap: 5px; align-items: center;
         }
-        @media (min-width: 768px) { .swipe-hint { display: none; } }
 
+        /* =========================================
+           RESPONSIVE DESIGN (MOBILES & TABLETTES)
+           ========================================= */
+        
+        /* Écrans moyens (Tablettes et fenêtres divisées) */
+        @media (max-width: 1024px) {
+            .nav-links { 
+                display: none; /* Cache le texte du milieu pour éviter l'écrasement */
+            }
+        }
+
+        /* Téléphones */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem 5%;
+            }
+            .brand { 
+                font-size: 1.1rem; 
+            }
+            .navbar .btn-glow {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.8rem;
+            }
+            
+            /* Ajustement de la taille du texte principal */
+            .hero h1 { 
+                font-size: 2.5rem; 
+                line-height: 1.2;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+
+        /* Très petits téléphones (iPhone SE, etc.) */
+        @media (max-width: 380px) {
+            .navbar .btn-glow {
+                display: none; /* Cache le bouton du haut pour centrer le logo */
+            }
+            .navbar {
+                justify-content: center;
+            }
+        }
         .project-badge {
             position: absolute; top: 15px; left: 15px;
             background: rgba(255, 255, 255, 0.95); border: 1px solid #E2E8F0;
