@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dominique Bill Cataria | Architecte de Systèmes Digitaux</title>
+    
+    <!-- Meta SEO -->
+    <meta name="description" content="Expert en architecture digitale : Automatisation (Make), Tunnels de Vente (Systeme.io) et Développement Web.">
+    
+    <!-- Polices Ultra Modernes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icônes & Animation Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* --- CONFIGURATION DESIGN SYSTEM (LIGHT/CORPORATE MODE) --- */
+        :root {
+            var(--bg-main): #F8FAFC;
+            --bg-card: #FFFFFF;
+            --text-main: #0F172A;
+            --text-muted: #475569;
+            --primary: #4F46E5;
+            --accent: #7C3AED;
+            --gradient-text: linear-gradient(135deg, #4F46E5 0%, #0284C7 100%);
+            --gradient-btn: linear-gradient(90deg, #4F46E5 0%, #7C3AED 100%);
+            --border: 1px solid #E2E8F0;
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+            --radius: 16px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #F8FAFC;
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, .brand { font-family: 'Outfit', sans-serif; }
+        a { text-decoration: none; transition: 0.3s ease; }
+
+        /* --- BACKGROUND TECH EFFECT --- */
+        .tech-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            background-image: 
+                linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            mask-image: radial-gradient(circle at 50% 50%, black 40%, transparent 100%);
+            -webkit-mask-image: radial-gradient(circle at 50% 50%, black 40%, transparent 100%);
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: var(--border);
+            padding: 1.2rem 5%;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .brand { font-weight: 800; font-size: 1.2rem; letter-spacing: -0.5px; color: var(--text-main); }
+        .brand span { color: var(--primary); }
+
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { color: var(--text-muted); font-weight: 500; font-size: 0.95rem; }
+        .nav-links a:hover { color: var(--primary); }
+
+        .btn-glow {
+            background: var(--gradient-btn); color: white;
+            padding: 0.8rem 1.8rem; border-radius: 50px;
+            font-weight: 600; font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+            border: none;
+        }
+        .btn-glow:hover { box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4); transform: translateY(-2px); color: white; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 100vh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 120px 20px 60px;
+            position: relative;
+        }
+
+        .pill {
+            background: #EEF2FF; color: var(--primary);
+            border: 1px solid #C7D2FE;
+            padding: 0.5rem 1.2rem; border-radius: 100px;
+            font-size: 0.85rem; font-weight: 600; margin-bottom: 2rem;
+            display: inline-block;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            line-height: 1.1; margin-bottom: 1.5rem;
+            font-weight: 800; letter-spacing: -2px;
+            color: var(--text-main);
+        }
+
+        .gradient-text {
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem; color: var(--text-muted);
+            max-width: 650px; margin: 0 auto 3rem;
+            font-weight: 400;
+        }
+
+        .hero-btns { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+
+        .btn-secondary {
+            background: white; color: var(--text-main);
+            padding: 0.8rem 1.8rem; border-radius: 50px;
+            font-weight: 600; border: 1px solid #CBD5E1;
+            box-shadow: var(--shadow-sm);
+        }
+        .btn-secondary:hover { background: #F8FAFC; border-color: #94A3B8; color: var(--primary); }
+
+        /* --- TECH STACK --- */
+        .tech-stack {
+            margin-top: 5rem;
+            border-top: var(--border); border-bottom: var(--border);
+            padding: 2.5rem 0; background: white;
+        }
+        .tech-container { max-width: 1200px; margin: 0 auto; text-align: center; }
+        .tech-icons {
+            display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;
+        }
+        .tech-icons i { font-size: 2.5rem; transition: 0.3s; color: #94A3B8; }
+        .tech-icons i:hover { color: var(--primary); transform: scale(1.1); }
+
+        /* --- SERVICES CARDS --- */
+        .section { padding: 8rem 5%; max-width: 1200px; margin: 0 auto; }
+        .section-header { margin-bottom: 5rem; text-align: center; }
+        .section-header h2 { font-size: 2.5rem; margin-bottom: 1rem; color: var(--text-main); }
+        .section-header p { color: var(--text-muted); font-size: 1.1rem; }
+
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+
+        .card {
+            background: var(--bg-card); border: var(--border);
+            border-radius: var(--radius); padding: 2.5rem;
+            box-shadow: var(--shadow-sm);
+            transition: 0.4s; position: relative; overflow: hidden;
+        }
+        .card::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+            background: var(--gradient-btn); opacity: 0; transition: 0.3s;
+        }
+        .card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); border-color: transparent; }
+        .card:hover::after { opacity: 1; }
+
+        .icon-box {
+            width: 60px; height: 60px; background: #EEF2FF;
+            border-radius: 12px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; color: var(--primary); margin-bottom: 1.5rem;
+        }
+        .card h3 { font-size: 1.4rem; margin-bottom: 1rem; color: var(--text-main); }
+        .card p { color: var(--text-muted); font-size: 1rem; }
+
+        /* --- PORTFOLIO CATEGORIES & CARDS --- */
+        .portfolio-category { margin-bottom: 6rem; }
+        .portfolio-category:last-child { margin-bottom: 0; }
+        
+        .category-header {
+            display: flex; align-items: center; gap: 15px; margin-bottom: 2.5rem;
+            padding-bottom: 1rem; border-bottom: var(--border);
+        }
+        .category-icon {
+            width: 45px; height: 45px; background: #EEF2FF; color: var(--primary);
+            border-radius: 12px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem;
+        }
+        .category-header h3 { font-size: 1.8rem; margin: 0; color: var(--text-main); }
+
+        .project-card {
+            background: var(--bg-card); border: var(--border);
+            border-radius: var(--radius); overflow: hidden;
+            display: flex; flex-direction: column;
+            box-shadow: var(--shadow-sm); transition: 0.4s;
+        }
+        .project-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-5px); border-color: #CBD5E1; }
+
+        /* --- CARROUSEL D'IMAGES (NOUVEAU) --- */
+        .carousel-container {
+            position: relative; width: 100%; height: 220px;
+            border-bottom: var(--border); background: #F8FAFC;
+        }
+        
+        .carousel-track {
+            display: flex; width: 100%; height: 100%;
+            overflow-x: auto; scroll-snap-type: x mandatory;
+            scrollbar-width: none; /* Cache scrollbar Firefox */
+            -ms-overflow-style: none; /* Cache scrollbar IE */
+            scroll-behavior: smooth;
+        }
+        .carousel-track::-webkit-scrollbar { display: none; /* Cache scrollbar Chrome/Safari */ }
+        
+        .carousel-slide {
+            flex: 0 0 100%; width: 100%; height: 100%;
+            object-fit: cover; scroll-snap-align: start;
+        }
+
+        /* Boutons de navigation Carrousel */
+        .carousel-btn {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9); border: 1px solid #E2E8F0;
+            width: 32px; height: 32px; border-radius: 50%;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            color: var(--primary); font-size: 12px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            opacity: 0; transition: 0.3s; z-index: 10;
+        }
+        .carousel-container:hover .carousel-btn { opacity: 1; }
+        .carousel-btn:hover { background: var(--primary); color: white; border-color: var(--primary); transform: translateY(-50%) scale(1.1); }
+        .carousel-btn.prev { left: 10px; }
+        .carousel-btn.next { right: 10px; }
+
+        /* Indicateur de swipe sur mobile */
+        .swipe-hint {
+            position: absolute; bottom: 10px; right: 10px;
+            background: rgba(0,0,0,0.6); color: white;
+            padding: 4px 8px; border-radius: 20px;
+            font-size: 0.65rem; font-weight: 600; z-index: 5;
+            pointer-events: none; opacity: 0.8;
+            display: flex; gap: 5px; align-items: center;
+        }
+        @media (min-width: 768px) { .swipe-hint { display: none; } } /* Cache le hint sur PC */
+
+        .project-badge {
+            position: absolute; top: 15px; left: 15px;
+            background: rgba(255, 255, 255, 0.95); border: 1px solid #E2E8F0;
+            color: var(--primary); backdrop-filter: blur(4px);
+            padding: 5px 12px; border-radius: 50px;
+            font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05); z-index: 15;
+        }
+
+        /* Badge Custom Colors */
+        .badge-blue { color: #0284C7; border-color: #BAE6FD; background: #E0F2FE; }
+        .badge-orange { color: #D97706; border-color: #FDE68A; background: #FEF3C7; }
+        .badge-green { color: #059669; border-color: #A7F3D0; background: #D1FAE5; }
+
+        .card-body-project { padding: 2rem; flex-grow: 1; }
+        .card-body-project h3 { font-size: 1.25rem; margin-bottom: 0.8rem; color: var(--text-main); font-weight: 700; }
+        .card-body-project p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
+
+        .tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0; }
+        .tag {
+            font-size: 0.75rem; font-weight: 600; padding: 0.3rem 0.8rem; border-radius: 6px;
+            background: #F1F5F9; color: #475569; border: 1px solid #E2E8F0;
+        }
+        .tag.highlight { border-color: #C7D2FE; color: var(--primary); background: #EEF2FF; }
+
+        .btn-link {
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            width: 100%; padding: 1.2rem; background: #F8FAFC; color: var(--primary);
+            font-weight: 600; border-top: var(--border); transition: 0.3s;
+        }
+        .btn-link:hover { background: #EEF2FF; color: var(--accent); }
+
+        /* --- FOOTER --- */
+        footer { border-top: var(--border); padding: 5rem 5% 3rem; text-align: center; background: white; }
+        .socials { margin-top: 2rem; display: flex; justify-content: center; gap: 1.5rem; }
+        .socials a { color: #94A3B8; font-size: 1.5rem; }
+        .socials a:hover { color: var(--primary); transform: scale(1.2); }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.8rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="tech-bg"></div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" data-aos="fade-down">
+        <div class="brand">DOMINIQUE<span>.BC</span></div>
+        <div class="nav-links">
+            <a href="#expertise">Expertise</a>
+            <a href="#work">Catalogue de Services</a>
+            <a href="mailto:jbillcataria@gmail.com">Contact</a>
+        </div>
+        <a href="#work" class="btn-glow">Voir le catalogue</a>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="pill" data-aos="fade-up">🤝 Ouvert aux partenariats & Apports d'affaires</div>
+        <h1 data-aos="fade-up" data-aos-delay="100">
+            Conception & Déploiement de <br> 
+            <span class="gradient-text">Systèmes Digitaux Performants.</span>
+        </h1>
+        <p data-aos="fade-up" data-aos-delay="200">
+            J'accompagne les entreprises et les agences dans la création de leurs infrastructures digitales : Applications SaaS sur-mesure, automatisation de processus métiers, et tunnels d'acquisition haute conversion.
+        </p>
+        <div class="hero-btns" data-aos="fade-up" data-aos-delay="300">
+            <a href="#work" class="btn-glow">Explorer mon catalogue</a>
+            <a href="https://www.linkedin.com/in/cataria-bc" target="_blank" class="btn-secondary"><i class="fab fa-linkedin"></i> Mon Profil LinkedIn</a>
+        </div>
+    </section>
+
+    <!-- TECH STACK -->
+    <div class="tech-stack" data-aos="fade-in">
+        <div class="tech-container">
+            <p style="color:var(--text-muted); margin-bottom: 1.5rem; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 600;">Technologies maîtrisées</p>
+            <div class="tech-icons">
+                <i class="fas fa-bolt" title="Make / Automation"></i>
+                <i class="fab fa-wordpress" title="WordPress"></i>
+                <i class="fas fa-robot" title="AI Agents"></i>
+                <i class="fab fa-stripe" title="Paiements"></i>
+                <i class="fab fa-node-js" title="Node.js"></i>
+                <i class="fab fa-docker" title="Docker"></i>
+                <i class="fas fa-database" title="Supabase / SQL"></i>
+                <i class="fas fa-funnel-dollar" title="Systeme.io"></i>
+                <i class="fab fa-github" title="CI/CD"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- PORTFOLIO -->
+    <section id="work" class="section">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Catalogue de Réalisations</h2>
+            <p>Découvrez les différents types de prestations que je peux déployer pour vous ou vos clients.</p>
+        </div>
+
+        <!-- CATÉGORIE 1 -->
+        <div class="portfolio-category">
+            <div class="category-header" data-aos="fade-right">
+                <div class="category-icon"><i class="fas fa-brain"></i></div>
+                <h3>SaaS & Applications IA (Sur-mesure)</h3>
+            </div>
+            <div class="grid-3">
+                
+                <!-- SIRH SECURE -->
+                <div class="project-card" data-aos="fade-up">
+                    <div class="carousel-container">
+                        <div class="project-badge badge-blue">SaaS B2B</div>
+                        <div class="swipe-hint"><i class="fas fa-arrows-alt-h"></i> Swipe</div>
+                        
+                        <!-- Flèches PC -->
+                        <button class="carousel-btn prev" onclick="scrollCarousel(this, -1)"><i class="fas fa-chevron-left"></i></button>
+                        <button class="carousel-btn next" onclick="scrollCarousel(this, 1)"><i class="fas fa-chevron-right"></i></button>
+                        
+                        <div class="carousel-track">
+                            <!-- Image 1 -->
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1769532732/Capture_d_%C3%A9cran_1055_fcunjp.png" class="carousel-slide" alt="SIRH Vue 1">
+                            <!-- Image 2 (Mettez une autre image ici) -->
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1769532732/Capture_d_%C3%A9cran_1055_fcunjp.png" class="carousel-slide" style="filter: grayscale(50%);" alt="SIRH Vue 2">
+                        </div>
+                    </div>
+                    <div class="card-body-project">
+                        <h3>SIRH Secure | Architecture SaaS</h3>
+                        <p>Application métier déployée via Docker. Backend modulaire en Node.js. Gestion avancée des données avec Supabase.</p>
+                        <div class="tags">
+                            <span class="tag highlight">Node.js API</span><span class="tag">Docker</span><span class="tag">Supabase</span>
+                        </div>
+                    </div>
+                    <a href="https://geraldzanders01-beep.github.io/Front_end_sirh_secure/" target="_blank" class="btn-link">Voir le déploiement <i class="fas fa-external-link-alt" style="font-size: 0.8rem;"></i></a>
+                </div>
+
+                <!-- VOX MASTERY -->
+                <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="carousel-container">
+                        <div class="project-badge badge-orange">IA Temps Réel</div>
+                        <div class="swipe-hint"><i class="fas fa-arrows-alt-h"></i> Swipe</div>
+                        <button class="carousel-btn prev" onclick="scrollCarousel(this, -1)"><i class="fas fa-chevron-left"></i></button>
+                        <button class="carousel-btn next" onclick="scrollCarousel(this, 1)"><i class="fas fa-chevron-right"></i></button>
+                        
+                        <div class="carousel-track">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1772626503/Capture_d_%C3%A9cran_2744_tvogmb.png" class="carousel-slide" alt="Vox 1">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1772626503/Capture_d_%C3%A9cran_2744_tvogmb.png" style="filter: hue-rotate(90deg);" class="carousel-slide" alt="Vox 2">
+                        </div>
+                    </div>
+                    <div class="card-body-project">
+                        <h3>Vox Mastery | Analyse Vocale IA</h3>
+                        <p>Application front-end capturant l'audio. Envoi des données vers un Agent IA pour analyse sémantique en temps réel.</p>
+                        <div class="tags">
+                            <span class="tag highlight">Agent IA</span><span class="tag">Alpine.js</span><span class="tag">Webhooks</span>
+                        </div>
+                    </div>
+                    <a href="https://dominiquecataria199-dot.github.io/vox/" target="_blank" class="btn-link">Voir l'interaction <i class="fas fa-wave-square" style="font-size: 0.8rem;"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CATÉGORIE 2 -->
+        <div class="portfolio-category">
+            <div class="category-header" data-aos="fade-right">
+                <div class="category-icon"><i class="fas fa-network-wired"></i></div>
+                <h3>Automatisation & Systèmes Métiers (Make/API)</h3>
+            </div>
+            <div class="grid-3">
+                
+                <div class="project-card" data-aos="fade-up">
+                    <div class="carousel-container">
+                        <div class="project-badge">Live Test</div>
+                        <div class="swipe-hint"><i class="fas fa-arrows-alt-h"></i> Swipe</div>
+                        <button class="carousel-btn prev" onclick="scrollCarousel(this, -1)"><i class="fas fa-chevron-left"></i></button>
+                        <button class="carousel-btn next" onclick="scrollCarousel(this, 1)"><i class="fas fa-chevron-right"></i></button>
+                        
+                        <div class="carousel-track">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1767354367/Capture_d_%C3%A9cran_348_uvj9sj.png" class="carousel-slide" alt="Event Live">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1767354367/Capture_d_%C3%A9cran_348_uvj9sj.png" style="filter: sepia(50%);" class="carousel-slide" alt="Event Live 2">
+                        </div>
+                    </div>
+                    <div class="card-body-project">
+                        <h3>Event Control: Live Active</h3>
+                        <p>Module de test en temps réel pour la supervision d'événements. Interface utilisateur optimisée pour le monitoring.</p>
+                        <div class="tags"><span class="tag highlight">Web App</span><span class="tag">Dashboard</span></div>
+                    </div>
+                    <a href="https://eventcontroltestlive.terre-des-enfants-epanouis.org/" target="_blank" class="btn-link">Voir le Live <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="carousel-container">
+                        <div class="project-badge">Workflow Automatisé</div>
+                        <div class="swipe-hint"><i class="fas fa-arrows-alt-h"></i> Swipe</div>
+                        <button class="carousel-btn prev" onclick="scrollCarousel(this, -1)"><i class="fas fa-chevron-left"></i></button>
+                        <button class="carousel-btn next" onclick="scrollCarousel(this, 1)"><i class="fas fa-chevron-right"></i></button>
+                        
+                        <div class="carousel-track">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1767110039/Capture_d_%C3%A9cran_302_jtjfqz.png" class="carousel-slide" alt="Event System 1">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1767110039/Capture_d_%C3%A9cran_302_jtjfqz.png" style="filter: invert(10%);" class="carousel-slide" alt="Event System 2">
+                        </div>
+                    </div>
+                    <div class="card-body-project">
+                        <h3>Event Control System</h3>
+                        <p>Système de gestion d'événements 100% automatisé via Make. Orchestration complexe et synchronisation de données.</p>
+                        <div class="tags"><span class="tag highlight">Make</span><span class="tag">Intégration API</span></div>
+                    </div>
+                    <a href="https://presentationeventcontrol.terre-des-enfants-epanouis.org/" target="_blank" class="btn-link">Voir la démo <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CATÉGORIE 3 -->
+        <div class="portfolio-category">
+            <div class="category-header" data-aos="fade-right">
+                <div class="category-icon"><i class="fas fa-shopping-cart"></i></div>
+                <h3>Funnels & E-commerce (Systeme.io)</h3>
+            </div>
+            <div class="grid-3">
+                
+                <div class="project-card" data-aos="fade-up">
+                    <div class="carousel-container">
+                        <div class="project-badge badge-green">Conversion</div>
+                        <div class="swipe-hint"><i class="fas fa-arrows-alt-h"></i> Swipe</div>
+                        <button class="carousel-btn prev" onclick="scrollCarousel(this, -1)"><i class="fas fa-chevron-left"></i></button>
+                        <button class="carousel-btn next" onclick="scrollCarousel(this, 1)"><i class="fas fa-chevron-right"></i></button>
+                        
+                        <div class="carousel-track">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1767110513/Capture_d_%C3%A9cran_303_l3mu2a.png" class="carousel-slide" alt="Ridfirst 1">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1767110513/Capture_d_%C3%A9cran_303_l3mu2a.png" style="transform: scaleX(-1);" class="carousel-slide" alt="Ridfirst 2">
+                        </div>
+                    </div>
+                    <div class="card-body-project">
+                        <h3>E-Commerce: Chez Ridfirst</h3>
+                        <p>Tunnel de vente pour produits physiques. Optimisation du checkout, order bumps et séquences emails.</p>
+                        <div class="tags"><span class="tag highlight">Systeme.io</span><span class="tag">Paiement Stripe</span></div>
+                    </div>
+                    <a href="https://proelites.systeme.io/chez-ridfirst" target="_blank" class="btn-link">Visiter le tunnel <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="carousel-container">
+                        <div class="project-badge badge-green">Lead Gen</div>
+                        <div class="swipe-hint"><i class="fas fa-arrows-alt-h"></i> Swipe</div>
+                        <button class="carousel-btn prev" onclick="scrollCarousel(this, -1)"><i class="fas fa-chevron-left"></i></button>
+                        <button class="carousel-btn next" onclick="scrollCarousel(this, 1)"><i class="fas fa-chevron-right"></i></button>
+                        
+                        <div class="carousel-track">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1767627365/Capture_d_%C3%A9cran_365_tzlj8p.png" class="carousel-slide" alt="Baby 1">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1767627365/Capture_d_%C3%A9cran_365_tzlj8p.png" style="filter: brightness(80%);" class="carousel-slide" alt="Baby 2">
+                        </div>
+                    </div>
+                    <div class="card-body-project">
+                        <h3>Baby Bliss Funnel</h3>
+                        <p>Landing page conçue pour maximiser la capture de prospects. Copywriting émotionnel et design incitatif.</p>
+                        <div class="tags"><span class="tag highlight">Landing Page</span><span class="tag">Acquisition</span></div>
+                    </div>
+                    <a href="https://babyblissgift.terre-des-enfants-epanouis.org/" target="_blank" class="btn-link">Voir la page <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CATÉGORIE 4 -->
+        <div class="portfolio-category">
+            <div class="category-header" data-aos="fade-right">
+                <div class="category-icon"><i class="fas fa-laptop"></i></div>
+                <h3>Sites Vitrines & Branding</h3>
+            </div>
+            <div class="grid-3">
+                
+                <div class="project-card" data-aos="fade-up">
+                    <div class="carousel-container">
+                        <div class="project-badge">Site Institutionnel</div>
+                        <div class="swipe-hint"><i class="fas fa-arrows-alt-h"></i> Swipe</div>
+                        <button class="carousel-btn prev" onclick="scrollCarousel(this, -1)"><i class="fas fa-chevron-left"></i></button>
+                        <button class="carousel-btn next" onclick="scrollCarousel(this, 1)"><i class="fas fa-chevron-right"></i></button>
+                        
+                        <div class="carousel-track">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1767110661/Capture_d_%C3%A9cran_112_cb2ehv.png" class="carousel-slide" alt="ONG 1">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1767110661/Capture_d_%C3%A9cran_112_cb2ehv.png" style="filter: contrast(120%);" class="carousel-slide" alt="ONG 2">
+                        </div>
+                    </div>
+                    <div class="card-body-project">
+                        <h3>ONG Terre des Enfants</h3>
+                        <p>Refonte WordPress avec intégration d'un blog dynamique, optimisation SEO locale et modules de dons sécurisés.</p>
+                        <div class="tags"><span class="tag highlight">WordPress</span><span class="tag">Responsive</span></div>
+                    </div>
+                    <a href="https://terre-des-enfants-epanouis.org/" target="_blank" class="btn-link">Voir le site <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="carousel-container">
+                        <div class="project-badge">Personal Branding</div>
+                        <div class="swipe-hint"><i class="fas fa-arrows-alt-h"></i> Swipe</div>
+                        <button class="carousel-btn prev" onclick="scrollCarousel(this, -1)"><i class="fas fa-chevron-left"></i></button>
+                        <button class="carousel-btn next" onclick="scrollCarousel(this, 1)"><i class="fas fa-chevron-right"></i></button>
+                        
+                        <div class="carousel-track">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1767111254/Capture_d_%C3%A9cran_306_cu0qxw.png" class="carousel-slide" alt="Portfolio Jean">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1767111254/Capture_d_%C3%A9cran_306_cu0qxw.png" style="filter: saturate(150%);" class="carousel-slide" alt="Portfolio Jean 2">
+                        </div>
+                    </div>
+                    <div class="card-body-project">
+                        <h3>Portfolio Consultant : Jean A.</h3>
+                        <p>Site personnel structuré pour un consultant. Mise en avant de l'expertise, orienté vers la prise de contact.</p>
+                        <div class="tags"><span class="tag highlight">UI Design</span><span class="tag">Identité</span></div>
+                    </div>
+                    <a href="https://proelites.systeme.io/jean-agbangla-portfolio" target="_blank" class="btn-link">Voir le projet <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="carousel-container">
+                        <div class="project-badge">Personal Branding</div>
+                        <div class="swipe-hint"><i class="fas fa-arrows-alt-h"></i> Swipe</div>
+                        <button class="carousel-btn prev" onclick="scrollCarousel(this, -1)"><i class="fas fa-chevron-left"></i></button>
+                        <button class="carousel-btn next" onclick="scrollCarousel(this, 1)"><i class="fas fa-chevron-right"></i></button>
+                        
+                        <div class="carousel-track">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1767111402/Capture_d_%C3%A9cran_307_uh21u9.png" class="carousel-slide" alt="Portfolio Wil">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1767111402/Capture_d_%C3%A9cran_307_uh21u9.png" style="filter: blur(1px);" class="carousel-slide" alt="Portfolio Wil 2">
+                        </div>
+                    </div>
+                    <div class="card-body-project">
+                        <h3>Portfolio Expert : Wilfried G.</h3>
+                        <p>Vitrine digitale interactive pour présenter des services. Design moderne pensé pour valoriser la crédibilité.</p>
+                        <div class="tags"><span class="tag highlight">Web Design</span><span class="tag">Portfolio</span></div>
+                    </div>
+                    <a href="https://proelites.systeme.io/gougni-wilfried-portfolio" target="_blank" class="btn-link">Voir le projet <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <h2 style="color: var(--text-main); margin-bottom: 1rem;">Prêt à collaborer ?</h2>
+        <p style="color: var(--text-muted); margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto;">Que vous soyez un client direct ou un apporteur d'affaires, discutons de la manière dont nous pouvons construire des systèmes performants ensemble.</p>
+        <a href="mailto:jbillcataria@gmail.com" class="btn-glow">Me contacter par email</a>
+        
+        <div class="socials">
+            <a href="https://www.linkedin.com/in/cataria-bc" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:jbillcataria@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p style="margin-top: 3rem; font-size: 0.9rem; color: #94A3B8;">© 2025 Dominique Bill Cataria. Tous droits réservés.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Init Animation
+        AOS.init({ duration: 800, once: true, offset: 50 });
+
+        // Fonction pour faire défiler les images du carrousel avec les flèches (Sur PC)
+        function scrollCarousel(button, direction) {
+            const track = button.parentElement.querySelector('.carousel-track');
+            const slideWidth = track.clientWidth;
+            // Fait défiler d'une largeur exacte d'image vers la gauche (-1) ou la droite (1)
+            track.scrollBy({ left: slideWidth * direction, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
