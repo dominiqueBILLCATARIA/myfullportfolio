@@ -396,73 +396,129 @@
         .socials a:hover { color: var(--primary); transform: scale(1.2); }
 
 /* =========================================
-           PRELOADER LOTTIE (ANIMATION VECTORIELLE)
+           PRELOADER HUMOUR 100% CSS (ZÉRO ERREUR 403)
            ========================================= */
         #preloader {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: #F8FAFC; z-index: 999999;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+            overflow: hidden;
         }
-        #preloader.hidden { opacity: 0; visibility: hidden; transform: scale(1.05); }
+        #preloader.hidden { opacity: 0; visibility: hidden; }
 
-        /* Conteneur de l'animation Lottie */
-        .lottie-container {
-            width: 250px; height: 250px;
-            margin-bottom: -20px; /* Rapproche le texte du personnage */
-            display: flex; justify-content: center; align-items: center;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.05));
+        .scene-container {
+            position: relative; width: 250px; height: 80px; margin-bottom: 40px;
         }
 
-        /* La bulle de texte dynamique */
+        /* Structure de base des bonhommes (Stickmen) */
+        .stickman { position: absolute; bottom: 0; width: 30px; height: 60px; }
+        .sm-head { position: absolute; top: 0; left: 7px; width: 16px; height: 16px; border-radius: 50%; }
+        .sm-torso { position: absolute; top: 16px; left: 13px; width: 4px; height: 22px; border-radius: 2px; }
+        .sm-limb { position: absolute; width: 4px; border-radius: 2px; transform-origin: top center; }
+        
+        .arm { height: 18px; top: 18px; left: 13px; }
+        .leg { height: 22px; top: 37px; left: 13px; }
+
+        /* Bob (Celui qui lâche le gaz) */
+        .bob { left: 30px; animation: bob-push 3s infinite; }
+        .bob div { background-color: #475569; } /* Couleur grise de Bob */
+        .bob .sm-head { animation: face-red 3s infinite; }
+        .bob .sm-torso { transform: rotate(-5deg); }
+        .bob .arm.left { transform: rotate(20deg); }
+        .bob .arm.right { transform: rotate(-20deg); }
+        .bob .leg.left { transform: rotate(-15deg); }
+        .bob .leg.right { transform: rotate(15deg); }
+
+        /* Alice (Celle qui fuit) */
+        .alice { left: 90px; animation: flee 3s infinite; }
+        .alice div { background-color: #4F46E5; } /* Couleur bleue d'Alice */
+        .alice .sm-head { animation: bob-head 0.15s infinite alternate; }
+        .alice .sm-torso { transform: rotate(15deg); animation: bob-head 0.15s infinite alternate; }
+        .alice .arm.left { animation: swing 0.15s infinite alternate ease-in-out; }
+        .alice .arm.right { animation: swing 0.15s infinite alternate-reverse ease-in-out; }
+        .alice .leg.left { animation: swing-leg 0.15s infinite alternate ease-in-out; }
+        .alice .leg.right { animation: swing-leg 0.15s infinite alternate-reverse ease-in-out; }
+
+        /* Le nuage toxique */
+        .gas {
+            position: absolute; bottom: 15px; left: 45px;
+            width: 25px; height: 25px; background: #22c55e;
+            border-radius: 50%; filter: blur(6px); opacity: 0;
+            animation: gas-fart 3s infinite;
+        }
+
+        /* --- ANIMATIONS DE LA SCÈNE (La magie opère ici) --- */
+        @keyframes bob-push {
+            0%, 15% { transform: scale(1); }
+            20% { transform: scale(1.1, 0.8) translateY(6px); } /* Il se tasse et force */
+            25%, 100% { transform: scale(1); }
+        }
+        @keyframes face-red {
+            0%, 15% { background-color: #475569; }
+            20% { background-color: #ef4444; } /* Tête rouge ! */
+            25%, 100% { background-color: #475569; }
+        }
+        @keyframes gas-fart {
+            0%, 19% { opacity: 0; transform: scale(0.2) translateX(0); }
+            22% { opacity: 0.9; transform: scale(1.5) translateX(15px); }
+            35%, 100% { opacity: 0; transform: scale(3) translateX(40px) translateY(-10px); }
+        }
+        @keyframes flee {
+            0%, 21% { transform: translateX(0); }
+            23% { transform: translateX(5px) translateY(-10px); } /* Sursaut de peur */
+            35%, 100% { transform: translateX(250px); opacity: 0; } /* Elle sprinte hors de l'écran */
+        }
+
+        /* Animations fluides des membres (Alice qui court) */
+        @keyframes swing { 0% { transform: rotate(-60deg); } 100% { transform: rotate(60deg); } }
+        @keyframes swing-leg { 0% { transform: rotate(-50deg); } 100% { transform: rotate(50deg); } }
+        @keyframes bob-head { 0% { transform: translateY(0); } 100% { transform: translateY(3px); } }
+
+        /* La bulle de texte */
         .loader-text-container {
             background: white; border: 1px solid #E2E8F0;
-            padding: 15px 35px; border-radius: 50px;
-            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.08);
-            position: relative; overflow: hidden;
-            transform: translateY(20px); opacity: 0;
-            animation: slide-up-text 0.5s forwards 0.3s;
+            padding: 12px 30px; border-radius: 50px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
         }
-
-        @keyframes slide-up-text {
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        /* Reflet premium sur la bulle */
-        .loader-text-container::after {
-            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
-            animation: shine 2.5s infinite; z-index: 1;
-        }
-        @keyframes shine { 100% { left: 200%; } }
-
         .loader-text {
-            position: relative; z-index: 2;
             font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; 
-            color: #1E293B; font-size: 1.1rem; min-width: 280px; text-align: center;
-        } 
+            color: #1E293B; font-size: 1.05rem; min-width: 280px; text-align: center;
+        }
     </style>
 
-    <!-- Lottie Player (Pour les animations vectorielles fluides) -->
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
 </head>
 <body>
 
-<!-- ÉCRAN DE CHARGEMENT LOTTIE -->
+<!-- ÉCRAN DE CHARGEMENT HUMOUR (100% CSS) -->
     <div id="preloader">
-        <div class="lottie-container">
-            <!-- Animation Lottie d'un personnage qui court/fuit de manière amusante et fluide -->
-            <lottie-player 
-                src="https://lottie.host/9c24e6ca-b8ec-494b-a16f-d31e5f8d22d1/2lB8oZtU9W.json" 
-                background="transparent" 
-                speed="1.2" 
-                style="width: 100%; height: 100%;" 
-                loop 
-                autoplay>
-            </lottie-player>
+        <div class="scene-container">
+            <!-- Bob (Celui qui a mangé trop épicé) -->
+            <div class="stickman bob">
+                <div class="sm-head"></div>
+                <div class="sm-torso"></div>
+                <div class="sm-limb arm left"></div>
+                <div class="sm-limb arm right"></div>
+                <div class="sm-limb leg left"></div>
+                <div class="sm-limb leg right"></div>
+            </div>
+            
+            <!-- Le nuage de gaz -->
+            <div class="gas"></div>
+            
+            <!-- Alice (Celle qui fuit pour sa vie) -->
+            <div class="stickman alice">
+                <div class="sm-head"></div>
+                <div class="sm-torso"></div>
+                <div class="sm-limb arm left"></div>
+                <div class="sm-limb arm right"></div>
+                <div class="sm-limb leg left"></div>
+                <div class="sm-limb leg right"></div>
+            </div>
         </div>
         <div class="loader-text-container">
-            <div id="fun-loader-text" class="loader-text">Fuite en cours... 🏃‍♂️💨</div>
+            <div id="fun-loader-text" class="loader-text">Dégazage des serveurs... 💨</div>
         </div>
     </div>
     
@@ -893,46 +949,36 @@
         });
 
 // ==========================================
-        // SCRIPT PRELOADER LOTTIE
+        // SCRIPT PRELOADER HUMOUR
         // ==========================================
         const funPhrases = [
-            "Fuite en cours... 🏃‍♂️💨",
-            "On évacue la zone... 🚨",
-            "Compilation sous pression... 💥",
-            "Sauvetage des données... 💾",
-            "Ne paniquez pas... 😅",
+            "Dégazage des serveurs... 💨",
+            "Évacuation de la zone... 🏃‍♂️",
+            "Test de résistance aux fuites... ☢️",
+            "Oups, le code a pété... 💥",
+            "Nettoyage de l'air ambiant... 🍃",
             "C'est (presque) prêt ! ✨"
         ];
         
         let phraseIndex = 0;
         const loaderTextElement = document.getElementById('fun-loader-text');
         
-        // Change la phrase amusante toutes les 1.2 secondes
+        // Fait tourner les phrases amusantes
         const phraseInterval = setInterval(() => {
             phraseIndex = (phraseIndex + 1) % funPhrases.length;
-            
-            // Petit effet de fondu sur le texte pour que ce soit plus doux
-            loaderTextElement.style.opacity = 0;
-            setTimeout(() => {
-                loaderTextElement.innerText = funPhrases[phraseIndex];
-                loaderTextElement.style.opacity = 1;
-            }, 200);
-            
+            loaderTextElement.innerText = funPhrases[phraseIndex];
         }, 1200);
-
-        // Transition douce CSS pour le texte
-        loaderTextElement.style.transition = "opacity 0.2s ease";
 
         // Bloque le scroll pendant le chargement
         document.body.style.overflow = 'hidden';
 
-        // Durée garantie d'affichage (minimum 2.5 secondes pour apprécier l'animation)
+        // Laisse l'animation tourner 3 secondes pour qu'ils voient bien la scène
         window.addEventListener('load', function() {
             setTimeout(function() {
                 clearInterval(phraseInterval);
                 document.getElementById('preloader').classList.add('hidden');
-                document.body.style.overflow = 'auto'; // Réactive le scroll
-            }, 2500); 
+                document.body.style.overflow = 'auto'; // Réactive le défilement
+            }, 3000); 
         });
     </script>
 </body>
