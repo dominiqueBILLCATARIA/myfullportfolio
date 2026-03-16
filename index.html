@@ -45,8 +45,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    
-
     <style>
         /* --- CONFIGURATION DESIGN SYSTEM (LIGHT/CORPORATE MODE) --- */
         :root {
@@ -395,94 +393,69 @@
         .socials a { color: #94A3B8; font-size: 1.5rem; }
         .socials a:hover { color: var(--primary); transform: scale(1.2); }
 
-        /* --- PRELOADER : LA FUITE GAZIFÈRE (HUMANOÏDES FLUIDES) --- */
+/* =========================================
+           PRELOADER FUN (BOULES REBONDISSANTES)
+           ========================================= */
         #preloader {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: #F8FAFC; z-index: 999999;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             transition: opacity 0.6s ease, visibility 0.6s ease;
         }
-        #preloader.hidden { opacity: 0; visibility: hidden; }
-
-        .scene-container { position: relative; width: 300px; height: 100px; margin-bottom: 50px; }
-
-        /* Corps du bonhomme */
-        .stickman { position: absolute; bottom: 0; width: 30px; height: 60px; transition: transform 0.2s; }
-        .sm-head { position: absolute; top: 0; left: 7px; width: 16px; height: 16px; border-radius: 50%; background: #475569; }
-        .sm-torso { position: absolute; top: 16px; left: 13px; width: 4px; height: 22px; background: #475569; }
-        .sm-limb { position: absolute; width: 4px; height: 18px; background: #475569; border-radius: 2px; transform-origin: top center; }
-
-        /* Bob */
-        .bob { left: 40px; animation: bob-move 3s infinite ease-in-out; }
-        .bob .sm-head { animation: bob-red 3s infinite; }
-        
-        /* Alice */
-        .alice { left: 100px; animation: alice-flee 3s infinite ease-in-out; }
-        .alice div { background: #4F46E5 !important; }
-        
-        /* Nuage */
-        .gas {
-            position: absolute; bottom: 25px; left: 60px; width: 30px; height: 30px;
-            background: #22c55e; border-radius: 50%; filter: blur(8px); opacity: 0;
-            animation: gas-move 3s infinite;
-        }
-
-        /* --- ANIMATIONS --- */
-        @keyframes bob-move {
-            0%, 15% { transform: scale(1); }
-            20% { transform: scale(1.1, 0.8) translateY(10px) rotate(10deg); } /* L'effort du pet */
-            25% { transform: scale(0.9, 1.1) translateY(-5px); } /* Recul */
-            30%, 100% { transform: scale(1); }
-        }
-        @keyframes bob-red {
-            20% { background: #ef4444; }
-        }
-        @keyframes gas-move {
-            0%, 18% { opacity: 0; transform: scale(0); }
-            20% { opacity: 0.8; transform: scale(1) translateX(0); }
-            40%, 100% { opacity: 0; transform: scale(3) translateX(100px); }
-        }
-        @keyframes alice-flee {
-            0%, 20% { transform: translateX(0); }
-            22% { transform: translateX(10px) translateY(-10px) rotate(-10deg); } /* Sursaut */
-            25%, 100% { transform: translateX(400px) rotate(10deg); opacity: 0; } /* Fuite */
+        #preloader.hidden {
+            opacity: 0; visibility: hidden;
         }
         
-        /* Texte */
-        .loader-text { font-family: 'Outfit', sans-serif; font-weight: 700; color: #1E293B; font-size: 1.2rem; text-align: center; }
+        /* Conteneur des boules */
+        .bouncing-dots {
+            display: flex; gap: 15px; margin-bottom: 35px;
+        }
+        
+        /* Style des boules avec effet "caoutchouc" (Squash & Stretch) */
+        .bouncing-dots .dot {
+            width: 22px; height: 22px; border-radius: 50%;
+            animation: bounce 0.5s infinite alternate cubic-bezier(0.19, 1, 0.22, 1);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Couleurs modernes et joyeuses */
+        .bouncing-dots .dot:nth-child(1) { background-color: #4F46E5; animation-delay: 0s; }    /* Indigo */
+        .bouncing-dots .dot:nth-child(2) { background-color: #0ea5e9; animation-delay: 0.1s; }  /* Bleu clair */
+        .bouncing-dots .dot:nth-child(3) { background-color: #8b5cf6; animation-delay: 0.2s; }  /* Violet */
+        .bouncing-dots .dot:nth-child(4) { background-color: #ec4899; animation-delay: 0.3s; }  /* Rose pop */
+
+        @keyframes bounce {
+            0% { transform: translateY(0) scale(1.1, 0.9); } /* Écrasé au sol */
+            100% { transform: translateY(-30px) scale(0.9, 1.1); } /* Étiré en l'air */
+        }
+
+        /* La bulle de texte fun */
+        .loader-text-container {
+            background: white; border: 1px solid #E2E8F0;
+            padding: 12px 30px; border-radius: 50px;
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.08);
+        }
+        .loader-text {
+            font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; 
+            color: #475569; font-size: 1.05rem;
+            min-width: 280px; text-align: center;
+        }
     </style>
-
-
 </head>
 <body>
 
-<div id="preloader">
-        <div class="scene-container">
-            <!-- Bob -->
-            <div class="stickman bob">
-                <div class="sm-head"></div><div class="sm-torso"></div>
-                <div class="sm-limb" style="top:18px; left:13px; transform:rotate(20deg)"></div>
-                <div class="sm-limb" style="top:18px; left:13px; transform:rotate(-20deg)"></div>
-                <div class="sm-limb" style="top:37px; left:13px; height:22px; transform:rotate(-15deg)"></div>
-                <div class="sm-limb" style="top:37px; left:13px; height:22px; transform:rotate(15deg)"></div>
-            </div>
-            <div class="gas"></div>
-            <!-- Alice -->
-            <div class="stickman alice">
-                <div class="sm-head"></div><div class="sm-torso"></div>
-                <div class="sm-limb" style="top:18px; left:13px; animation:arm-run 0.2s infinite alternate"></div>
-                <div class="sm-limb" style="top:18px; left:13px; animation:arm-run 0.2s infinite alternate-reverse"></div>
-                <div class="sm-limb" style="top:37px; left:13px; height:22px; animation:leg-run 0.2s infinite alternate"></div>
-                <div class="sm-limb" style="top:37px; left:13px; height:22px; animation:leg-run 0.2s infinite alternate-reverse"></div>
-            </div>
+    <!-- ÉCRAN DE CHARGEMENT FUN -->
+    <div id="preloader">
+        <div class="bouncing-dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
         </div>
-        <div class="loader-text" id="fun-loader-text">Dégazage des serveurs...</div>
+        <div class="loader-text-container">
+            <div id="fun-loader-text" class="loader-text">Préparation de la magie... ✨</div>
+        </div>
     </div>
-    
-    <style>
-        @keyframes arm-run { from { transform: rotate(-45deg); } to { transform: rotate(45deg); } }
-        @keyframes leg-run { from { transform: rotate(-60deg); } to { transform: rotate(60deg); } }
-    </style>
     
     <div class="tech-bg"></div>
 
@@ -910,18 +883,38 @@
             if (e.key === 'ArrowRight') changeLightboxImage(1);
         });
 
-const funPhrases = ["Dégazage des serveurs... 💨", "Alice s'enfuit... 🏃‍♀️", "Nettoyage des fuites... ☢️", "Presque prêt ! ✨"];
+// ==========================================
+        // SCRIPT PRELOADER FUN
+        // ==========================================
+        const funPhrases = [
+            "Chargement... ✨",
+            "Automatisation ... ☕",
+            "Création de workflows... 🔌",
+            "Optimisation du funnel... 💰",
+            "Digitalisation de process... 💰",
+            "On y est presque... 🚀"
+        ];
+        
         let phraseIndex = 0;
-        setInterval(() => {
+        const loaderTextElement = document.getElementById('fun-loader-text');
+        
+        // Fait tourner les phrases toutes les 800 millisecondes (un peu plus lent pour avoir le temps de lire)
+        const phraseInterval = setInterval(() => {
             phraseIndex = (phraseIndex + 1) % funPhrases.length;
-            document.getElementById('fun-loader-text').innerText = funPhrases[phraseIndex];
+            loaderTextElement.innerText = funPhrases[phraseIndex];
         }, 800);
 
-        window.addEventListener('load', () => {
-            setTimeout(() => {
+        // Bloque le scroll pendant le chargement
+        document.body.style.overflow = 'hidden';
+
+        // Quand tout le site est chargé
+        window.addEventListener('load', function() {
+            // Petit délai artificiel de 1.5 seconde pour que ce soit agréable à regarder
+            setTimeout(function() {
+                clearInterval(phraseInterval);
                 document.getElementById('preloader').classList.add('hidden');
-                document.body.style.overflow = 'auto';
-            }, 3000);
+                document.body.style.overflow = 'auto'; // Réactive le défilement
+            }, 1500); 
         });
     </script>
 </body>
