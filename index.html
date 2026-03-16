@@ -392,10 +392,71 @@
         .socials { margin-top: 2rem; display: flex; justify-content: center; gap: 1.5rem; }
         .socials a { color: #94A3B8; font-size: 1.5rem; }
         .socials a:hover { color: var(--primary); transform: scale(1.2); }
+
+/* =========================================
+           PRELOADER FUN (BOULES REBONDISSANTES)
+           ========================================= */
+        #preloader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #F8FAFC; z-index: 999999;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+        #preloader.hidden {
+            opacity: 0; visibility: hidden;
+        }
+        
+        /* Conteneur des boules */
+        .bouncing-dots {
+            display: flex; gap: 15px; margin-bottom: 35px;
+        }
+        
+        /* Style des boules avec effet "caoutchouc" (Squash & Stretch) */
+        .bouncing-dots .dot {
+            width: 22px; height: 22px; border-radius: 50%;
+            animation: bounce 0.5s infinite alternate cubic-bezier(0.19, 1, 0.22, 1);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Couleurs modernes et joyeuses */
+        .bouncing-dots .dot:nth-child(1) { background-color: #4F46E5; animation-delay: 0s; }    /* Indigo */
+        .bouncing-dots .dot:nth-child(2) { background-color: #0ea5e9; animation-delay: 0.1s; }  /* Bleu clair */
+        .bouncing-dots .dot:nth-child(3) { background-color: #8b5cf6; animation-delay: 0.2s; }  /* Violet */
+        .bouncing-dots .dot:nth-child(4) { background-color: #ec4899; animation-delay: 0.3s; }  /* Rose pop */
+
+        @keyframes bounce {
+            0% { transform: translateY(0) scale(1.1, 0.9); } /* Écrasé au sol */
+            100% { transform: translateY(-30px) scale(0.9, 1.1); } /* Étiré en l'air */
+        }
+
+        /* La bulle de texte fun */
+        .loader-text-container {
+            background: white; border: 1px solid #E2E8F0;
+            padding: 12px 30px; border-radius: 50px;
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.08);
+        }
+        .loader-text {
+            font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; 
+            color: #475569; font-size: 1.05rem;
+            min-width: 280px; text-align: center;
+        }
     </style>
 </head>
 <body>
 
+    <!-- ÉCRAN DE CHARGEMENT FUN -->
+    <div id="preloader">
+        <div class="bouncing-dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+        <div class="loader-text-container">
+            <div id="fun-loader-text" class="loader-text">Préparation de la magie... ✨</div>
+        </div>
+    </div>
+    
     <div class="tech-bg"></div>
 
     <!-- NAVBAR -->
@@ -473,7 +534,7 @@
             </div>
         </div>
     </section>
-    <!-- PORTFOLIO -->
+<!-- PORTFOLIO -->
     <section id="work" class="section">
         <div class="section-header" data-aos="fade-up">
             <h2>Catalogue de Réalisations</h2>
@@ -497,12 +558,11 @@
                         <button class="carousel-btn next" onclick="scrollCarousel(this, 1)"><i class="fas fa-chevron-right"></i></button>
                         
                         <div class="carousel-track">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773604166/Capture_d_%C3%A9cran_2850_wmbubq.png" class="carousel-slide" alt="SIRH Vue Principale">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773604165/Capture_d_%C3%A9cran_2848_odmqrt.png" class="carousel-slide" style="filter: grayscale(50%);" alt="SIRH Dashboard">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773604173/Capture_d_%C3%A9cran_2854_ekwwkw.png" class="carousel-slide" style="filter: grayscale(50%);" alt="SIRH Dashboard">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773604573/Capture_d_%C3%A9cran_2864_f6hqxq.png" class="carousel-slide" style="filter: grayscale(50%);" alt="SIRH Dashboard">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773604683/Capture_d_%C3%A9cran_2865_acnadt.png" class="carousel-slide" style="filter: grayscale(50%);" alt="SIRH Dashboard">
-
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773604166/Capture_d_%C3%A9cran_2850_wmbubq.png" class="carousel-slide" alt="SIRH Vue Principale" loading="lazy">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773604165/Capture_d_%C3%A9cran_2848_odmqrt.png" class="carousel-slide" style="filter: grayscale(50%);" alt="SIRH Dashboard" loading="lazy">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773604173/Capture_d_%C3%A9cran_2854_ekwwkw.png" class="carousel-slide" style="filter: grayscale(50%);" alt="SIRH Dashboard" loading="lazy">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773604573/Capture_d_%C3%A9cran_2864_f6hqxq.png" class="carousel-slide" style="filter: grayscale(50%);" alt="SIRH Dashboard" loading="lazy">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773604683/Capture_d_%C3%A9cran_2865_acnadt.png" class="carousel-slide" style="filter: grayscale(50%);" alt="SIRH Dashboard" loading="lazy">
                         </div>
                     </div>
                     <div class="card-body-project">
@@ -524,13 +584,13 @@
                         <button class="carousel-btn next" onclick="scrollCarousel(this, 1)"><i class="fas fa-chevron-right"></i></button>
                         
                         <div class="carousel-track">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1772626503/Capture_d_%C3%A9cran_2744_tvogmb.png" class="carousel-slide" alt="Vox Analyseur">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773669434/Capture_d_%C3%A9cran_2876_xm9d5f.png" style="filter: hue-rotate(90deg);" class="carousel-slide" alt="Vox Résultats">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773669768/Capture_d_%C3%A9cran_2883_i8w3ns.png" style="filter: hue-rotate(90deg);" class="carousel-slide" alt="Vox Résultats">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773669787/Capture_d_%C3%A9cran_2888_sihsxj.png" style="filter: hue-rotate(90deg);" class="carousel-slide" alt="Vox Résultats">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773669801/Capture_d_%C3%A9cran_2889_g6zdtq.png" style="filter: hue-rotate(90deg);" class="carousel-slide" alt="Vox Résultats">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773669461/Capture_d_%C3%A9cran_2877_vo9lms.png" style="filter: hue-rotate(90deg);" class="carousel-slide" alt="Vox Résultats">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773669502/Capture_d_%C3%A9cran_2882_atbjoc.png" style="filter: hue-rotate(90deg);" class="carousel-slide" alt="Vox Résultats">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1772626503/Capture_d_%C3%A9cran_2744_tvogmb.png" class="carousel-slide" alt="Vox Analyseur" loading="lazy">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773669434/Capture_d_%C3%A9cran_2876_xm9d5f.png" style="filter: hue-rotate(90deg);" class="carousel-slide" alt="Vox Résultats" loading="lazy">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773669768/Capture_d_%C3%A9cran_2883_i8w3ns.png" style="filter: hue-rotate(90deg);" class="carousel-slide" alt="Vox Résultats" loading="lazy">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773669787/Capture_d_%C3%A9cran_2888_sihsxj.png" style="filter: hue-rotate(90deg);" class="carousel-slide" alt="Vox Résultats" loading="lazy">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773669801/Capture_d_%C3%A9cran_2889_g6zdtq.png" style="filter: hue-rotate(90deg);" class="carousel-slide" alt="Vox Résultats" loading="lazy">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773669461/Capture_d_%C3%A9cran_2877_vo9lms.png" style="filter: hue-rotate(90deg);" class="carousel-slide" alt="Vox Résultats" loading="lazy">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773669502/Capture_d_%C3%A9cran_2882_atbjoc.png" style="filter: hue-rotate(90deg);" class="carousel-slide" alt="Vox Résultats" loading="lazy">
                         </div>
                     </div>
                     <div class="card-body-project">
@@ -560,11 +620,10 @@
                         <button class="carousel-btn next" onclick="scrollCarousel(this, 1)"><i class="fas fa-chevron-right"></i></button>
                         
                         <div class="carousel-track">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1767354367/Capture_d_%C3%A9cran_348_uvj9sj.png" class="carousel-slide" alt="Event Live Interface">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773680925/Capture_d_%C3%A9cran_2896_y3hmdk.png" style="filter: sepia(50%);" class="carousel-slide" alt="Event Live Modules">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773680928/Capture_d_%C3%A9cran_2897_hpdu74.png" style="filter: sepia(50%);" class="carousel-slide" alt="Event Live Modules">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773680923/Capture_d_%C3%A9cran_2898_o5octj.png" style="filter: sepia(50%);" class="carousel-slide" alt="Event Live Modules">
-
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1767354367/Capture_d_%C3%A9cran_348_uvj9sj.png" class="carousel-slide" alt="Event Live Interface" loading="lazy">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773680925/Capture_d_%C3%A9cran_2896_y3hmdk.png" style="filter: sepia(50%);" class="carousel-slide" alt="Event Live Modules" loading="lazy">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773680928/Capture_d_%C3%A9cran_2897_hpdu74.png" style="filter: sepia(50%);" class="carousel-slide" alt="Event Live Modules" loading="lazy">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773680923/Capture_d_%C3%A9cran_2898_o5octj.png" style="filter: sepia(50%);" class="carousel-slide" alt="Event Live Modules" loading="lazy">
                         </div>
                     </div>
                     <div class="card-body-project">
@@ -583,11 +642,10 @@
                         <button class="carousel-btn next" onclick="scrollCarousel(this, 1)"><i class="fas fa-chevron-right"></i></button>
                         
                         <div class="carousel-track">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1767110039/Capture_d_%C3%A9cran_302_jtjfqz.png" class="carousel-slide" alt="Event System Overview">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773680695/Capture_d_%C3%A9cran_2893_pk39pr.png" style="filter: invert(10%);" class="carousel-slide" alt="Event Live Modules">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773680696/Capture_d_%C3%A9cran_2894_gtjl4y.png" style="filter: invert(10%);" class="carousel-slide" alt="Event Live Modules">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773680694/Capture_d_%C3%A9cran_2895_xu8vyb.png" style="filter: invert(10%);" class="carousel-slide" alt="Event Live Modules">
-
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1767110039/Capture_d_%C3%A9cran_302_jtjfqz.png" class="carousel-slide" alt="Event System Overview" loading="lazy">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773680695/Capture_d_%C3%A9cran_2893_pk39pr.png" style="filter: invert(10%);" class="carousel-slide" alt="Event Live Modules" loading="lazy">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773680696/Capture_d_%C3%A9cran_2894_gtjl4y.png" style="filter: invert(10%);" class="carousel-slide" alt="Event Live Modules" loading="lazy">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773680694/Capture_d_%C3%A9cran_2895_xu8vyb.png" style="filter: invert(10%);" class="carousel-slide" alt="Event Live Modules" loading="lazy">
                         </div>
                     </div>
                     <div class="card-body-project">
@@ -615,9 +673,9 @@
                         <button class="carousel-btn next" onclick="scrollCarousel(this, 1)"><i class="fas fa-chevron-right"></i></button>
                         
                         <div class="carousel-track">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773681320/Capture_d_%C3%A9cran_2899_tjfufb.png" class="carousel-slide" alt="Ridfirst Vente">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773681315/Capture_d_%C3%A9cran_2900_j2ytc1.png" style="transform: scaleX(-1);" class="carousel-slide" alt="Ridfirst Checkout">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773681311/Capture_d_%C3%A9cran_2901_g2ialp.png" style="transform: scaleX(-1);" class="carousel-slide" alt="Ridfirst Checkout">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773681320/Capture_d_%C3%A9cran_2899_tjfufb.png" class="carousel-slide" alt="Ridfirst Vente" loading="lazy">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773681315/Capture_d_%C3%A9cran_2900_j2ytc1.png" style="transform: scaleX(-1);" class="carousel-slide" alt="Ridfirst Checkout" loading="lazy">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773681311/Capture_d_%C3%A9cran_2901_g2ialp.png" style="transform: scaleX(-1);" class="carousel-slide" alt="Ridfirst Checkout" loading="lazy">
                         </div>
                     </div>
                     <div class="card-body-project">
@@ -636,16 +694,14 @@
                         <button class="carousel-btn next" onclick="scrollCarousel(this, 1)"><i class="fas fa-chevron-right"></i></button>
                         
                         <div class="carousel-track">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1767627365/Capture_d_%C3%A9cran_365_tzlj8p.png" class="carousel-slide" alt="Baby Landing Page">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773681454/Capture_d_%C3%A9cran_2902_kbubvg.png" style="filter: brightness(80%);" class="carousel-slide" alt="Baby Capture Form">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773681454/Capture_d_%C3%A9cran_2902_kbubvg.png" style="filter: brightness(80%);" class="carousel-slide" alt="Baby Capture Form">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773681453/Capture_d_%C3%A9cran_2903_mdpvfl.png" style="filter: brightness(80%);" class="carousel-slide" alt="Baby Capture Form">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773681454/Capture_d_%C3%A9cran_2904_vjqvxd.png" style="filter: brightness(80%);" class="carousel-slide" alt="Baby Capture Form">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773681454/Capture_d_%C3%A9cran_2905_atbmha.png" style="filter: brightness(80%);" class="carousel-slide" alt="Baby Capture Form">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773681729/Capture_d_%C3%A9cran_2906_mm5rqr.png" style="filter: brightness(80%);" class="carousel-slide" alt="Baby Capture Form">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773681729/Capture_d_%C3%A9cran_2907_hwm9tr.png" style="filter: brightness(80%);" class="carousel-slide" alt="Baby Capture Form">
-
-                        
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1767627365/Capture_d_%C3%A9cran_365_tzlj8p.png" class="carousel-slide" alt="Baby Landing Page" loading="lazy">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773681454/Capture_d_%C3%A9cran_2902_kbubvg.png" style="filter: brightness(80%);" class="carousel-slide" alt="Baby Capture Form" loading="lazy">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773681454/Capture_d_%C3%A9cran_2902_kbubvg.png" style="filter: brightness(80%);" class="carousel-slide" alt="Baby Capture Form" loading="lazy">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773681453/Capture_d_%C3%A9cran_2903_mdpvfl.png" style="filter: brightness(80%);" class="carousel-slide" alt="Baby Capture Form" loading="lazy">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773681454/Capture_d_%C3%A9cran_2904_vjqvxd.png" style="filter: brightness(80%);" class="carousel-slide" alt="Baby Capture Form" loading="lazy">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773681454/Capture_d_%C3%A9cran_2905_atbmha.png" style="filter: brightness(80%);" class="carousel-slide" alt="Baby Capture Form" loading="lazy">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773681729/Capture_d_%C3%A9cran_2906_mm5rqr.png" style="filter: brightness(80%);" class="carousel-slide" alt="Baby Capture Form" loading="lazy">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773681729/Capture_d_%C3%A9cran_2907_hwm9tr.png" style="filter: brightness(80%);" class="carousel-slide" alt="Baby Capture Form" loading="lazy">
                         </div>
                     </div>
                     <div class="card-body-project">
@@ -673,12 +729,12 @@
                         <button class="carousel-btn next" onclick="scrollCarousel(this, 1)"><i class="fas fa-chevron-right"></i></button>
                         
                         <div class="carousel-track">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773681921/Capture_d_%C3%A9cran_2908_n1g5h1.png" class="carousel-slide" alt="ONG Accueil">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773681931/Capture_d_%C3%A9cran_2910_xvvhmf.png" style="filter: contrast(120%);" class="carousel-slide" alt="ONG Contact">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773681953/Capture_d_%C3%A9cran_2911_rsfn0m.png" style="filter: contrast(120%);" class="carousel-slide" alt="ONG Contact">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773681949/Capture_d_%C3%A9cran_2909_efscq6.png" style="filter: contrast(120%);" class="carousel-slide" alt="ONG Contact">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773681931/Capture_d_%C3%A9cran_2914_wzz5ip.png" style="filter: contrast(120%);" class="carousel-slide" alt="ONG Contact">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773681929/Capture_d_%C3%A9cran_2915_e8y2cm.png" style="filter: contrast(120%);" class="carousel-slide" alt="ONG Contact">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773681921/Capture_d_%C3%A9cran_2908_n1g5h1.png" class="carousel-slide" alt="ONG Accueil" loading="lazy">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773681931/Capture_d_%C3%A9cran_2910_xvvhmf.png" style="filter: contrast(120%);" class="carousel-slide" alt="ONG Contact" loading="lazy">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773681953/Capture_d_%C3%A9cran_2911_rsfn0m.png" style="filter: contrast(120%);" class="carousel-slide" alt="ONG Contact" loading="lazy">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773681949/Capture_d_%C3%A9cran_2909_efscq6.png" style="filter: contrast(120%);" class="carousel-slide" alt="ONG Contact" loading="lazy">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773681931/Capture_d_%C3%A9cran_2914_wzz5ip.png" style="filter: contrast(120%);" class="carousel-slide" alt="ONG Contact" loading="lazy">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773681929/Capture_d_%C3%A9cran_2915_e8y2cm.png" style="filter: contrast(120%);" class="carousel-slide" alt="ONG Contact" loading="lazy">
                         </div>
                     </div>
                     <div class="card-body-project">
@@ -697,9 +753,9 @@
                         <button class="carousel-btn next" onclick="scrollCarousel(this, 1)"><i class="fas fa-chevron-right"></i></button>
                         
                         <div class="carousel-track">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1767111254/Capture_d_%C3%A9cran_306_cu0qxw.png" class="carousel-slide" alt="Portfolio Jean">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773682149/Capture_d_%C3%A9cran_2916_v26hby.png" style="filter: saturate(150%);" class="carousel-slide" alt="Portfolio Jean Services">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773682149/Capture_d_%C3%A9cran_2917_rlsljv.png" style="filter: saturate(150%);" class="carousel-slide" alt="Portfolio Jean Services">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1767111254/Capture_d_%C3%A9cran_306_cu0qxw.png" class="carousel-slide" alt="Portfolio Jean" loading="lazy">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773682149/Capture_d_%C3%A9cran_2916_v26hby.png" style="filter: saturate(150%);" class="carousel-slide" alt="Portfolio Jean Services" loading="lazy">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773682149/Capture_d_%C3%A9cran_2917_rlsljv.png" style="filter: saturate(150%);" class="carousel-slide" alt="Portfolio Jean Services" loading="lazy">
                         </div>
                     </div>
                     <div class="card-body-project">
@@ -718,10 +774,10 @@
                         <button class="carousel-btn next" onclick="scrollCarousel(this, 1)"><i class="fas fa-chevron-right"></i></button>
                         
                         <div class="carousel-track">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773682403/Capture_d_%C3%A9cran_2918_vhf2x2.png" class="carousel-slide" alt="Portfolio Wilfried">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773682415/Capture_d_%C3%A9cran_2922_uqfwcl.png" style="filter: blur(1px);" class="carousel-slide" alt="Portfolio Wilfried Apropos">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773682409/Capture_d_%C3%A9cran_2919_nv9frt.png" style="filter: blur(1px);" class="carousel-slide" alt="Portfolio Wilfried Apropos">
-                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/v1773682408/Capture_d_%C3%A9cran_2921_lzi5ff.png" style="filter: blur(1px);" class="carousel-slide" alt="Portfolio Wilfried Apropos">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773682403/Capture_d_%C3%A9cran_2918_vhf2x2.png" class="carousel-slide" alt="Portfolio Wilfried" loading="lazy">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773682415/Capture_d_%C3%A9cran_2922_uqfwcl.png" style="filter: blur(1px);" class="carousel-slide" alt="Portfolio Wilfried Apropos" loading="lazy">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773682409/Capture_d_%C3%A9cran_2919_nv9frt.png" style="filter: blur(1px);" class="carousel-slide" alt="Portfolio Wilfried Apropos" loading="lazy">
+                            <img src="https://res.cloudinary.com/dglwrrvh3/image/upload/q_auto,f_auto/v1773682408/Capture_d_%C3%A9cran_2921_lzi5ff.png" style="filter: blur(1px);" class="carousel-slide" alt="Portfolio Wilfried Apropos" loading="lazy">
                         </div>
                     </div>
                     <div class="card-body-project">
@@ -825,6 +881,40 @@
             if (e.key === 'Escape') closeLightbox();
             if (e.key === 'ArrowLeft') changeLightboxImage(-1);
             if (e.key === 'ArrowRight') changeLightboxImage(1);
+        });
+
+// ==========================================
+        // SCRIPT PRELOADER FUN
+        // ==========================================
+        const funPhrases = [
+            "Chargement... ✨",
+            "Automatisation ... ☕",
+            "Création de workflows... 🔌",
+            "Optimisation du funnel... 💰",
+            "Digitalisation de process... 💰",
+            "On y est presque... 🚀"
+        ];
+        
+        let phraseIndex = 0;
+        const loaderTextElement = document.getElementById('fun-loader-text');
+        
+        // Fait tourner les phrases toutes les 800 millisecondes (un peu plus lent pour avoir le temps de lire)
+        const phraseInterval = setInterval(() => {
+            phraseIndex = (phraseIndex + 1) % funPhrases.length;
+            loaderTextElement.innerText = funPhrases[phraseIndex];
+        }, 800);
+
+        // Bloque le scroll pendant le chargement
+        document.body.style.overflow = 'hidden';
+
+        // Quand tout le site est chargé
+        window.addEventListener('load', function() {
+            // Petit délai artificiel de 1.5 seconde pour que ce soit agréable à regarder
+            setTimeout(function() {
+                clearInterval(phraseInterval);
+                document.getElementById('preloader').classList.add('hidden');
+                document.body.style.overflow = 'auto'; // Réactive le défilement
+            }, 1500); 
         });
     </script>
 </body>
